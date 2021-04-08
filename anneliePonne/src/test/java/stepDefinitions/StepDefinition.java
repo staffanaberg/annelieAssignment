@@ -68,14 +68,14 @@ public class StepDefinition {
 			driver.quit();
 
 		} else if (status.equals("fail limit")) {
-			WebElement result = driver.findElement(By.cssSelector("span[class=invalid-error]"));
+			WebElement result = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div/main/div[2]/div/form/fieldset/div[2]/div/span"));
 			driver.quit();
 
 		} else if (status.equals("fail existing")) {
 			WebElement result = driver.findElement(
 					By.xpath("/html/body/div[2]/div[1]/div/main/div[2]/div/form/fieldset/div[2]/div/span"));
 			driver.quit();
-			
+
 		}
 
 		else {
