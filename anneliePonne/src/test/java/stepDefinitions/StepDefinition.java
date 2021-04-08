@@ -1,7 +1,5 @@
 package stepDefinitions;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -9,8 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.en.Then;
 
 public class StepDefinition {
 
@@ -35,11 +33,18 @@ public class StepDefinition {
 
 	}
 
-	@Given("I have also entered {string} and random selector as a username")
-	public void i_have_also_entered_username_and_random_selector_as_a_username(String username) {
-		WebElement addFirst = driver.findElement(By.cssSelector("input[id=new_username]"));
-		addFirst.sendKeys(username + rand.nextInt());
+	@Given("I have also entered {string} as a username and chosen {string}")
+	public void i_have_also_entered_username_as_a_username(String username, String random) {
+		if (random.equals("yes")) {
+			WebElement addFirst = driver.findElement(By.cssSelector("input[id=new_username]"));
+			addFirst.sendKeys(username + rand.nextInt(2147483647));
 
+		}
+
+		else {
+			WebElement addFirst = driver.findElement(By.cssSelector("input[id=new_username]"));
+			addFirst.sendKeys(username);
+		}
 	}
 
 	@Given("I have also entered {string} as a password")
@@ -56,15 +61,29 @@ public class StepDefinition {
 
 	}
 
-	@Then("the registration should <status>")
-	public void the_registration_should_status() {
+	@Then("the registration should {string} and I verify {string}")
+	public void the_registration_should_and_i_verify(String status, String message) {
+		if (status.equals("pass")) {
+			WebElement result = driver.findElement(By.cssSelector("body[id=login]"));
+			driver.quit();
 
-		driver.get("https://login.mailchimp.com/signup/success/");
-		WebElement result = driver.findElement(By.cssSelector("body[id=login]"));
-		WebElement result2 = driver.findElement(By.cssSelector("span[class=invalid-error]"));
-		//assertEquals(Integer.toString(int1), result.getAttribute("value"));
+		} else if (status.equals("fail limit")) {
+			WebElement result = driver.findElement(By.cssSelector("span[class=invalid-error]"));
+			driver.quit();
 
-		driver.quit();
+		} else if (status.equals("fail existing")) {
+			WebElement result = driver.findElement(
+					By.xpath("/html/body/div[2]/div[1]/div/main/div[2]/div/form/fieldset/div[2]/div/span"));
+			driver.quit();
+			
+		}
+
+		else {
+			WebElement result = driver.findElement(
+					By.xpath("/html/body/div[2]/div[1]/div/main/div[2]/div/form/fieldset/div[1]/div/span"));
+			driver.quit();
+		}
 
 	}
+
 }
