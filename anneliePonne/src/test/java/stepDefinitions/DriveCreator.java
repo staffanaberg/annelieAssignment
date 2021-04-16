@@ -10,19 +10,20 @@ public class DriveCreator {
 	public WebDriver createBrowser(String browser) {
 
 		WebDriver driver;
-
+		System.out.println("Var är jag?");
 		if (browser.equals("chrome")) {
-			System.setProperty("webdriver.chrome.driver", "/Applications/chromedriver");
+			System.out.println("Är jag här?");
+			System.setProperty("webdriver.chrome.driver", "C:\\Eclipse\\mydrivers\\chromedriver.exe");
 			driver = new ChromeDriver();
 
 		} else if (browser.equals("firefox")) {
-			System.setProperty("webdriver.gecko.driver", "/Applications/geckodriver");
+			System.setProperty("webdriver.gecko.driver", "C:\\Eclipse\\mydrivers\\geckodriver.exe");
 			driver = new FirefoxDriver();
 
 		}
 
 		else {
-			System.setProperty("webdriver.edge.driver", "/Applications/msedgedriver");
+			System.setProperty("webdriver.edge.driver", "C:\\Eclipse\\mydrivers\\msedgedriver.exe");
 			driver = new EdgeDriver();
 		}
 		return driver;
