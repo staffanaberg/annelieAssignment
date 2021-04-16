@@ -17,9 +17,11 @@ public class StepDefinition {
 
 	@Given("I have used {string} as a browser")
 	public void i_have_used_browser_as_a_browser(String browser) {
-		DriveCreator creator = new DriveCreator();
-		driver = creator.createBrowser(browser);
-		driver.get("https://login.mailchimp.com/signup/");
+		System.out.println("Var är jag?");
+		
+		//DriveCreator creator = new DriveCreator();
+		//driver = creator.createBrowser(browser);
+		//driver.get("https://login.mailchimp.com/signup/");
 		driver.manage().window().maximize();
 		WebElement addButton = driver.findElement(By.cssSelector("button[id=onetrust-accept-btn-handler]"));
 		addButton.click();

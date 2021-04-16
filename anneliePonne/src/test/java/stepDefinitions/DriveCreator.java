@@ -13,7 +13,7 @@ public class DriveCreator {
 		System.out.println("Var är jag?");
 		if (browser.equals("chrome")) {
 			System.out.println("Är jag här?");
-			System.setProperty("webdriver.chrome.driver", "C:\\Eclipse\\mydrivers\\chromedriver.exe");
+			//System.setProperty("webdriver.chrome.driver", "C:\\Eclipse\\drivers\\chromedriver.exe");
 			driver = new ChromeDriver();
 
 		} else if (browser.equals("firefox")) {
